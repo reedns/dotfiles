@@ -1,0 +1,11 @@
+vendor/bundle
+.bundle/**
+.bundle/config
+.DS_Store
+*.swp
+*.swo
+*.swn
+tags
+.python-version
+yarn-error.log
+Procfile.dev

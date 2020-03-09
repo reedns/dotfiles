@@ -1,0 +1,11 @@
+[user]
+	name = Reed Nelson-Saunders
+	email = reedness3000@gmail.com
+[credential]
+	helper = osxkeychain
+[core]
+  editor = vim
+	excludesfile = /Users/reedns/.gitignore
+	autocrlf = input
+[push]
+	default = simple
