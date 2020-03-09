@@ -89,7 +89,7 @@ alias g="git status"
 alias start_pg="pg_ctl -D /usr/local/var/postgres start"
 alias ssh_video="ssh -p 5255 deploy@104.131.138.151 -i ~/.ssh/digitalocean_rsa"
 alias foreman_dev_start="foreman start -f Procfile.dev"
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$(yarn global bin):$PATH"
