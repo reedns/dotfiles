@@ -1,5 +1,5 @@
 [user]
-	name = Reed Nelson-Saunders
+	name = Reed Saunders
 	email = reedness3000@gmail.com
 [credential]
 	helper = osxkeychain
@@ -9,3 +9,8 @@
 	autocrlf = input
 [push]
 	default = simple
+[alias]
+  co = checkout
+  chekcout = checkout
+[merge]
+	conflictstyle = diff3

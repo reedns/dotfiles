@@ -48,7 +48,7 @@ ZSH_THEME=avit
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vi-mode git rails zsh-nvm)
+plugins=(vi-mode git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,9 +87,12 @@ function serve {
 alias gds="git diff --staged"
 alias g="git status"
 alias start_pg="pg_ctl -D /usr/local/var/postgres start"
-alias ssh_video="ssh -p 5255 deploy@104.131.138.151 -i ~/.ssh/digitalocean_rsa"
 alias foreman_dev_start="foreman start -f Procfile.dev"
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias cl="clear"
+alias d="docker"
+alias rake='noglob rake'
+alias "bundle exec cap production deploy"="ssh-add -K; bundle exec cap production deploy"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$(yarn global bin):$PATH"
@@ -98,6 +101,13 @@ eval "$(rbenv init -)"
 #if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 #export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
 
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
-#alias node='nvm use; unalias node; node $@'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
+alias node='nvm use; unalias node; node $@'
+export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
+
+jdk() {
+  version=$1
+  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+  java -version
+ }

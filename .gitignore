@@ -6,6 +6,8 @@ vendor/bundle
 *.swo
 *.swn
 tags
-.python-version
 yarn-error.log
 Procfile.dev
+config/.unison.database.yml*
+.byebug_history
+.apollo-development-irb-history.txt

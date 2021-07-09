@@ -1,6 +1,6 @@
 execute pathogen#infect()
 
-"Basic settings"
+" Basic settings
 set nocompatible
 filetype plugin indent on
 syntax enable
@@ -26,7 +26,7 @@ set autoread
 runtime macros/matchit.vim
 packadd! matchit
 
-"Whitespace settings"
+" Whitespace settings
 set nowrap
 set tabstop=2
 set shiftwidth=2
@@ -35,13 +35,13 @@ set backspace=indent,eol,start
 autocmd BufWritePre * :%s/\s\+$//e      " trim trailing whitspace on save
 set scrolloff=2
 
-"Search settings"
+" Search settings
 set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
-"Key mappings"
+" Key mappings
 :inoremap jk <Esc>
 :vnoremap jk <Esc>
 map <C-c> y:e ~/clipsongzboard<CR>P:w !pbcopy<CR><CR>:bdelete!<CR>
@@ -65,8 +65,9 @@ nnoremap <leader>b :CtrlPBuffer<CR>       ''
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <C-t> :NERDTreeToggle<CR>
 map <leader>nf :NERDTreeFind<CR>
+let g:ctrlp_dont_split = 'nerdtree'
 
-"Auto-reload vimrc"
+" Auto-reload vimrc
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -85,19 +86,21 @@ nnoremap <leader>= :wincmd =<cr>
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
-" Make CtrlP faster with SilverSurfer and Git
-let g:ctrlp_use_caching = 0
+" Make CtrlP faster with Silver Searcher and Git
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  else
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-  let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-  \ }
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
 endif
-let g:ctrlp_use_caching = 0
+
+" Set no file limit
+let g:ctrlp_max_files = 0
+
+" Set delay to prevent extra searches
+let g:ctrlp_lazy_update = 350
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Use py-matcher for CtrlP matching
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -149,3 +152,10 @@ inoremap <S-Tab> <C-n>
 
 " Set the filetype based on the file's extension
 au BufRead,BufNewFile *.html.inky-haml setfiletype haml
+
+" NERDCommenter
+let g:NERDSpaceDelims = 1
+let g:NERDTrimTrailingWhitespace = 1
+
+" Use TabNine for autocomplete
+set rtp+=~/.vim/bundle/tabnine-vim
